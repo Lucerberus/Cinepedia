@@ -1517,7 +1517,7 @@ for (let i = 0; i < listaAttori.length; i++) {
 
       await dbRun(
         `INSERT OR IGNORE INTO attori (name, biography, birthday, deathday, gender, place_of_birth, profile_path, id_amministratore)
-         VALUES (?, ?, ?, ?, ?, ?, ?)`,
+         VALUES (?, ?, ?, ?, ?, ?, ?,?)`,
         [
           attore.name,
           attore.biography || null,
