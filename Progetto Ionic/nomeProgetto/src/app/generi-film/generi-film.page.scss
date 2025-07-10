@@ -1,0 +1,41 @@
+.griglia-film {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px,200px)); //"Crea quante più colonne larghe esattamente 180px riesci a far stare nello spazio disponibile. Se c'è spazio per 3, ne metti 3. Se c'è spazio per 5, ne metti 5."
+  gap: 1rem;
+  padding: 1rem;
+  justify-content: center;
+}
+
+.film-box ion-card {
+  height: 100%;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.film-box ion-card:hover {
+  transform: scale(1.05);
+}
+
+.nome-genere{
+margin: 8px 0 0 10px; color: white;
+padding: 2rem;
+}
+
+ ion-card {
+    background: none;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+  }
+
+
+  @media (max-width: 768px) {
+  
+  .griglia-film {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); //nel mobile inserisco che minimo la copertina deve essere 140px e massimo si adatta allo spazio che riesce a trovare
+  gap: 1rem;
+  padding: 1rem;
+  justify-content: center;
+}
+}

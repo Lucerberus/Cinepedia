@@ -1,0 +1,381 @@
+.page {
+  --background: #100e0e;
+  color: white;
+}
+.campi{
+    --background: trasparent;
+     color: white; 
+    --highlight-color-focused: white;
+  --highlight-color: white;
+  --border-color: white;
+  --color: white;
+}
+
+.campo-user{
+  text-align: center;
+  
+    --background: trasparent;
+     color: white; 
+    --highlight-color-focused: orange;
+  --highlight-color: orange;
+  --border-color: orange;
+  --color: orange;
+}
+.username-wrapper {
+  
+   position: relative;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.pencil-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 0;
+  width: auto;
+  height: auto;
+  min-width: unset;
+}
+.username {
+  margin: 0;
+  font-size: 1.8rem;
+  color: white;
+  text-align: center;
+}
+
+.profile-header {
+  background-color: #1e1e2f;
+  width: 100%;
+  padding: 2rem;
+}
+
+.email-label {
+  color: white;
+  font-size: 1rem;
+}
+
+.email-field {
+  width: 100%;
+  --background: #fff;
+  color: black;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.upload-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+   border: solid 3px white;
+  overflow: hidden;
+}
+
+.profile-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  gap: 20px;
+}
+
+
+.avatar-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 250px;
+  gap: 16px;
+}
+.info-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 300px;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.email-label {
+  font-size: 1.2rem;
+  color: white;
+}
+
+
+.email-field {
+  text-align: center;
+  width: 100%;
+  color: white;
+  border:2px solid white;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.username {
+  margin: 0;
+  font-size: 1.8rem;
+  color: white;
+  text-align: center;
+}
+
+
+.Button{
+    border: solid white 1px;
+   color: white;
+   margin: 10px;
+  
+}
+
+.ModificaButton{
+    border: solid orange 1px;
+   color: orange;
+   margin: 10px;
+  
+}
+
+.errore {
+  color: red;
+  font-size: 13px;
+  margin-top: 0px;
+  //per far andare accapo il testos
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: break-word;
+  display: block;
+  padding: 10px;
+}
+
+ .cover-bottoni{
+
+     background: none;
+    box-shadow: none;
+    margin-top: 10px;
+    padding: 0;
+     display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  }
+
+  .scroll-section {
+    position: relative; /* NECESSARIO per posizionare bene le frecce */
+  }
+
+  .scroll-section:hover .scroll-button {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .scroll-section ion-card {
+  height: 100%;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.scroll-section ion-card:hover {
+  transform: scale(1.05);
+}
+ ion-card {
+    background: none;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+  }
+ .scroll-wrapper {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    gap: 15px;
+    padding: 1rem;
+    margin: 0;
+    scroll-behavior: smooth;
+  }
+
+  .scroll-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scroll-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+   .scroll-button.left {
+    left: 5px;
+  }
+
+  .scroll-button.right {
+    right: 5px;
+  }
+
+.nessun-risultato {
+  text-align: center;
+  color: white;
+  font-size: 2rem;
+  padding: 2rem;
+  opacity: 0.8;
+}
+
+.valutazione{
+ flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+
+}
+
+.star-rating {
+    display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 100%;
+  font-size: clamp(16px, 5vw, 25px); 
+  color: gold;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.titolo-sezione {
+  margin: 100px 0 10px 16px;
+  color: white;
+  cursor: pointer;
+}
+
+.scroll-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding: 1rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.card-film-container {
+  flex: 0 0 auto;
+  width: clamp(120px, 10vw, 200px);
+}
+
+.card-click {
+  cursor: pointer;
+}
+
+.card-film {
+  background: none;
+  box-shadow: none;
+}
+
+.poster-film {
+  width: 100%;
+  object-fit: cover;
+  aspect-ratio: 2 / 3;
+}
+
+.testo-valutazione {
+  color: white;
+  margin: 0;
+}
+
+
+
+
+@media (max-width: 768px) {
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  
+  align-items:center;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  gap: 20px;
+}
+
+
+
+//da mobile nascondo le frecce per scorrere
+
+  .scroll-button {
+    display: none;
+  }
+
+
+}
+
+//per dispositivi molto grandi
+@media (min-width: 1200px) {
+  .username {
+    font-size: 2.4rem;
+  }
+
+  .email-label {
+    font-size: 1.4rem;
+  }
+
+  .email-field {
+    font-size: 1.2rem;
+    padding: 12px;
+  }
+
+  .profile-avatar {
+    width: 140px;
+    height: 140px;
+  }
+
+  .avatar-column {
+    gap: 24px;
+  }
+
+  .info-column {
+    gap: 24px;
+  }
+
+  
+
+  
+
+  .Button, .ModificaButton {
+    font-size: 1.1rem;
+    padding: 0.75rem 1.2rem;
+  }
+
+  ion-input {
+    font-size: 1.1rem;
+  }
+}
+

@@ -1,0 +1,152 @@
+
+
+
+
+
+
+
+
+<ion-content  *ngIf= "attore"class="film-content">
+<!-- Copertina --> 
+ <!--poichè il metodo subscribe è asincorno capitava che al primo click ancora non erano stati caricati i film e quindi fare movie.poster_path dava errore e quindi la pagina html non si apriva
+ invece mettendo un controllo come *ngIf="movie" verifico che l'oggetto movie esista, appena esiste carica la pagina html, faccio così anche con gli attori
+ -->
+  <div class="film-layout">
+    <!-- Sezione attore -->
+    <div class="film-cover">
+      <ion-card class="cover-wrapper">
+        <div class="NomiCampi">
+          <ion-card class="title-card">
+            <ion-card-content>
+             {{getData(attore.name)}}
+            </ion-card-content>
+          </ion-card>
+          <img [src]="getImage(attore.profile_path)" class="cover-image" />
+        </div>
+
+        
+      
+      </ion-card>
+    </div>
+
+    <ion-card class="cover-wrapper2">
+      <div class="NomiCampi">
+        <ion-card class="description-card">
+          <ion-card-content>
+           {{ getBiography(attore.biography)}}
+          </ion-card-content>
+        </ion-card>
+      </div>
+
+      <div class="input-colonna">
+        <div class="input-riga">
+
+          <div class="NomiCampi">
+            <label class="NomiInput">Luogo di nascita</label>
+            <ion-card class="title-card">
+              <ion-card-content>
+                {{getData(attore.place_of_birth)}}
+              </ion-card-content>
+            </ion-card>
+          </div>
+
+          <div class="NomiCampi">
+            <label class="NomiInput">Data di nascita</label>
+            <ion-card class="title-card">
+              <ion-card-content>
+                {{getData(attore.birthday)}}
+              </ion-card-content>
+            </ion-card>
+          </div>
+
+          <div *ngIf="attore.deathday" class="NomiCampi">
+            <label class="NomiInput">Data di morte</label>
+            <ion-card class="title-card">
+              <ion-card-content>
+                {{getData(attore.deathday)}}
+              </ion-card-content>
+            </ion-card>
+          </div>
+
+          <div class="NomiCampi">
+          <label class="NomiInput">Genere</label>
+          <ion-card class="title-card">
+            <ion-card-content>
+              {{getData(genere)}}
+            </ion-card-content>
+          </ion-card>
+        </div>
+
+
+        </div>
+
+
+        
+      </div>
+  
+    </ion-card>
+  </div>
+
+
+  <!-- film -->
+   <div *ngIf="films_regista.length > 0">
+  <h2  class="cast-title">Film di cui è stato il regista</h2>
+   <div class="scroll-section">
+   <button class="scroll-button left" (click)="scrollLeft()" [disabled]="!films.length">◀</button>
+  <div #scrollContainer class="cast-scroll" id="attori">
+    <div *ngFor="let film of films_regista" class="cast-item">
+        <div (click)="vaiADettagli(film.id) " class="clickable-card">
+        <ion-card *ngIf="film" class="actor-card">
+          <img [src]=getImage(film.poster_path) class="actor-image">
+          <ion-card-content class="actor-name">
+            {{ getData(film.title)}}
+          </ion-card-content>
+          <ion-card-content class="character-name">
+            regista
+          </ion-card-content>
+        </ion-card>
+        </div>
+    </div>
+     
+  </div>
+  <button class="scroll-button right" (click)="scrollRight()"[disabled]="!films?.length">▶</button>
+  </div>
+  </div>
+
+
+ <div *ngIf="films.length > 0">
+  <!-- film -->
+  <h2 class="cast-title">Film in cui ha recitato</h2>
+   <div class="scroll-section">
+   <button class="scroll-button left" (click)="scrollLeft()" [disabled]="!films.length">◀</button>
+  <div #scrollContainer class="cast-scroll" id="attori">
+    <div *ngFor="let film of films" class="cast-item">
+        <div (click)="vaiADettagli(film.id) " class="clickable-card">
+        <ion-card *ngIf="film" class="actor-card">
+          <img [src]=getImage(film.poster_path) class="actor-image">
+          <ion-card-content class="actor-name">
+            {{ getData(film.title)}}
+          </ion-card-content>
+          <ion-card-content class="character-name">
+            {{ getData(film.character_name) }}
+          </ion-card-content>
+        </ion-card>
+        </div>
+    </div>
+     
+  </div>
+  <button class="scroll-button right" (click)="scrollRight()"[disabled]="!films?.length">▶</button>
+  </div>
+  </div>
+
+</ion-content>
+
+
+
+
+
+
+
+
+
+

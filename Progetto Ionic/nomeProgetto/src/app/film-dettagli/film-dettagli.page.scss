@@ -1,0 +1,367 @@
+.film-content {
+  --background: #100e0e;
+  color: white;
+}
+
+ion-card-content{
+color:white;
+}
+
+.clickable-card{
+    cursor: pointer;
+}
+
+.copertina{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.trailer-button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.bottone-trailer{
+    --color: white;
+  --border-color: white;
+  --border-width: 1px;
+  --border-style: solid;
+  --border-radius: 999px;
+  padding: 0 1.2rem;
+  font-weight: 500;
+  text-transform: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  ion-icon {
+    color: white;
+  }
+
+  &:hover {
+    transform: translateY(-3px); // solleva leggermente
+  }
+}
+
+.cover-wrapper2 {
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+    background: none;
+    box-shadow: none;
+   
+    padding: 0;
+  }
+.CampiInput {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; // spazio tra label e card
+}
+.input-colonna {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem 2rem 0 2rem; /* margini per farlo combaciare col resto */
+}
+.input-riga {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin: 1rem 2rem 0 2rem; /* margini per farlo combaciare col resto */
+}
+.film-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 2rem;
+ 
+  margin: 2rem auto; //margine sopra e sotto di 2rem cioè 2*fontBase
+  //il contenuto si espande fino ad un massimo di 1500px
+  //in questa maniera per schermi molto grandi il contenuto tende ad accentrarsi
+  //invece per schermi medi tipo i portatili si vede a riempimento 
+  //nei mobile invece tranquillamente tutto incolonnato come dovrebbe essere
+  max-width: 1500px; 
+  width: 100%;
+  justify-content: center;
+  
+
+  .film-cover {
+    flex-shrink: 0;
+    width: clamp(120px, 20vw, 300px);
+  }
+
+  .NomiCampi {
+  display: block;
+  color: white;
+  text-align: center;
+  margin-bottom: 0px;
+  font-weight: 500;
+}
+
+  .cover-wrapper {
+     margin-left: 10px;
+    background: none;
+    box-shadow: none;
+   
+    padding: 0;
+  }
+
+  .title-card {
+    background-color: #0f0d0d;
+     border: solid white 1px;
+    font-size: 150%;
+    text-align: center;
+  }
+
+  .cover-image {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+  }
+
+  .description-card {
+     border: solid white 1px;
+    background-color: #0f0d0d;
+    flex-grow: 1;
+    
+  }
+}
+
+/* Attori */
+.cast-title {
+  margin: 8px 0 0 10px;
+  color: white;
+}
+
+.cast-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding: 1rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.cast-item {
+  flex: 0 0 auto;
+  width: clamp(120px, 10vw, 200px);
+}
+
+  .cast-scroll ion-card {
+  height: 100%;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.cast-scroll ion-card:hover {
+  transform: scale(1.05);
+}
+
+.actor-card {
+  background: none;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+}
+
+.actor-image {
+  width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+}
+
+.actor-name {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.character-name{
+  text-align: center;
+  color: rgb(125, 122, 122);
+  margin-top: -25px;
+}
+
+
+.scroll-section {
+  position: relative;
+
+  &:hover .scroll-button {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.scroll-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  opacity: 0; // inizialmente nascoste
+  pointer-events: none; // non cliccabili se invisibili
+  transition: opacity 0.3s ease;
+
+  &.left {
+    left: 5px;
+  }
+
+  &.right {
+    right: 5px;
+  }
+}
+
+
+.scroll-button.left {
+      left: 5px;
+    }
+
+  .scroll-button.right {
+      right: 5px;
+  }
+
+
+
+
+  .heart-container {
+    //margin-left: 20px;
+    margin-top: 20px;
+   
+ 
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  &.animate {
+    animation: bounceUp 0.6s ease;
+  }
+}
+
+.heart-icon {
+  font-size: 45px;
+  color: gray;
+  transition: color 0.3s ease;
+  
+  &.filled {
+    color: red;
+  }
+}
+
+@keyframes bounceUp {
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-30px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  70% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+.star-rating {
+  display: inline-flex;
+  gap: 0.5rem;
+  font-size: 25px;
+  color: gold;
+  cursor: pointer;
+  align-items: center;
+}
+
+.star {
+  transition: transform 0.2s ease;
+}
+
+.star:hover {
+  transform: scale(1.1);
+}
+
+.icona-annullaValutazione{
+ font-size: 20px;
+  color: gray;
+  
+  
+}
+.icona-annullaValutazione:hover {
+  color: red;
+}
+
+.valutazione{
+ flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+
+}
+
+
+// Sezione modifica/rimuovi (solo admin)
+.sezione-edit-remove {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.sezione-cuore {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.heart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+}
+
+// Responsive layout per mobile 
+@media (max-width: 768px) {
+  //da mobile nascondo le frecce per scorrere
+.scroll-button {
+    display: none;
+  }
+  .film-layout {
+     
+
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+
+    .film-cover {
+      width: 80%;
+    }
+
+    .description-card {
+      width: 90%;
+    }
+  }
+  //cosi mettendo column gli elementi sotto questo div saranno incolonnati
+  .input-riga {
+  display: flex;
+  flex-direction: column;
+   flex: 0 0 auto;
+  gap: 1rem;
+  margin: 1rem 2rem 0 2rem; /* margini per farlo combaciare col resto */
+}
+
+}

@@ -1,0 +1,24 @@
+<h2 mat-dialog-title class="dialog-title">{{data.titolo || 'Avviso'}}</h2>
+
+<mat-dialog-content class="dialog-content">
+  {{ data.messaggio }}
+</mat-dialog-content>
+
+<mat-dialog-actions align="center" class="dialog-actions">
+
+  <!-- qui per visualizzare avvisi di conferma, quindi due tasti annulla o conferma -->
+  <ng-container *ngIf="!data.soloConferma">
+    <button mat-button class="btn-annulla" (click)="onAnnulla()">Annulla</button>
+    <button mat-button class="btn-conferma" (click)="onConferma()">
+      {{ data.testoConferma || 'Conferma' }}
+    </button>
+  </ng-container>
+
+  <!-- qui per visualizzare invece errori oppure successi, quindi l'utente cliccherà solo un tasto OK -->
+<ng-container *ngIf="data.soloConferma">
+  <button mat-button class="btn-conferma" (click)="onConferma()">
+    {{ data.testoConferma || 'OK' }}
+  </button>
+</ng-container>
+
+</mat-dialog-actions>

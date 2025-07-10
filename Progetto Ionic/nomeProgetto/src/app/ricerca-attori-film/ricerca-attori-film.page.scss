@@ -1,0 +1,83 @@
+.griglia-film {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px,200px)); //"Crea quante più colonne larghe esattamente 180px riesci a far stare nello spazio disponibile. Se c'è spazio per 3, ne metti 3. Se c'è spazio per 5, ne metti 5."
+  gap: 1rem;
+  padding: 1rem;
+  justify-content: center;
+}
+
+.film-box ion-card {
+  height: 100%;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.film-box ion-card:hover {
+  transform: scale(1.05);
+}
+
+.nome-genere{
+color: white;
+  margin: 0;
+  font-size: 1.5rem;
+}
+.riga-titolo-bottoni{
+   display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+
+.bottone-attivo {
+  font-weight: bold;
+  border-bottom: 2px solid white;
+}
+
+.nessun-risultato {
+  text-align: center;
+  color: white;
+  font-size: 2rem;
+  padding: 2rem;
+  opacity: 0.8;
+}
+
+.bottoni-filtri ion-button {
+ --color: white;
+  font-size: 0.9rem;
+  padding: 0;
+  height: 30px;
+}
+
+.actor-image {
+  width: 100%;
+  aspect-ratio: 2 / 3; // formato locandina
+  object-fit: cover;
+  border-radius: 5px;
+  display: block;
+}
+
+.actor-name {
+    color:white;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+ ion-card {
+    background: none;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+  }
+
+
+  @media (max-width: 768px) {
+  
+  .griglia-film {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); //nel mobile inserisco che minimo la copertina deve essere 140px e massimo si adatta allo spazio che riesce a trovare
+  gap: 1rem;
+  padding: 1rem;
+  justify-content: center;
+}
+}

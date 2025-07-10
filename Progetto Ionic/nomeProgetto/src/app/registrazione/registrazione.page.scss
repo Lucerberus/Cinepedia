@@ -1,0 +1,82 @@
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    height: 100%;
+
+}
+
+.scheda-registrazione{
+   background-color: #0a0909;
+   border: solid white 1px;
+   color: white;
+   max-width: 315.25px;   //limito la larghezza della scheda così che i testi che compaiono si adattano
+                          //ma non sto limitando la lunghezza verticale, perchè mi va bene che si allunghi la ion card quando compaiono i messaggi di errore
+   
+ 
+}
+
+.campi{
+    --background: #0a0909; color: white; 
+    --highlight-color-focused: white;
+  --highlight-color: white;
+  --border-color: white;
+  --color: white;
+}
+
+.password-item {
+  align-items: center;
+}
+
+ion-input{
+    margin-top: 7px;
+    
+}
+
+.errore {
+  color: red;
+  font-size: 13px;
+  margin-top: 0px;
+  //per far andare accapo il testos
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: break-word;
+  display: block;
+  padding: 10px;
+}
+
+.bottone-centrato {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;     
+  margin-top: 12px;
+}
+
+.registratiButton{
+    border: solid white 1px;
+   color: white;
+   margin: 10px;
+    margin-bottom: 10px;
+  
+}
+
+.InvioButton{
+    border: solid white 1px;
+   color: white;
+   margin: 10px;
+   margin-bottom: 25px;
+  
+}
+.info-email {
+  color: #dddddd;
+  font-size: 20px !important;
+  text-align: center;
+  margin: 0 auto 16px auto;
+  padding: 0 12px;
+
+  display: block;
+  max-width: 100%;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+}

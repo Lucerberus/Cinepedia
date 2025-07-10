@@ -1,0 +1,53 @@
+
+<ion-content style=" --background: #100e0e;">
+
+
+<div class="riga-titolo-bottoni">
+  <h2 class="nome-genere">Risultati per &nbsp;'{{ nomeCercato }}' &nbsp;in </h2>
+  <div class="bottoni-filtri">
+    <ion-button (click)="visualizza_film()"fill="clear"  [class.bottone-attivo]="mostraFilm">Film</ion-button>
+    <ion-button (click)="visualizza_attori()"fill="clear"  [class.bottone-attivo]=" mostraAttori">Attori</ion-button>
+  </div>
+</div>
+
+<div *ngIf="mostraFilm && risultatiFilm.length == 0" class="nessun-risultato">
+  Nessun film trovato per '{{ nomeCercato }}'
+</div>
+
+<div *ngIf="mostraAttori && risultatiAttori.length == 0" class="nessun-risultato">
+  Nessun attore trovato per '{{ nomeCercato }}'
+</div>
+
+<div *ngIf="mostraFilm" class="griglia-film">
+  <div *ngFor="let film of risultatiFilm" class="film-box">
+    <div (click)="vaiADettagliFilm(film.id) " >
+    <ion-card >
+      <img  class="actor-image" [src]="getImage(film.poster_path)" />
+      <ion-card-content class="actor-name">
+            {{ film?.title }}
+          </ion-card-content>
+    </ion-card>
+    </div>
+  </div>
+</div>
+
+
+
+<div *ngIf="mostraAttori"class="griglia-film">
+  <div *ngFor="let attori of risultatiAttori" class="film-box">
+    <div (click)="vaiADettagliAttori(attori.id) " >
+    <ion-card *ngIf="attori" >
+      <img  class="actor-image" [src]="getImage(attori.profile_path)" />
+      <ion-card-content class="actor-name">
+            {{ attori?.name }}
+          </ion-card-content>
+    </ion-card>
+          </div>
+  </div>
+</div>
+
+
+
+
+
+</ion-content>

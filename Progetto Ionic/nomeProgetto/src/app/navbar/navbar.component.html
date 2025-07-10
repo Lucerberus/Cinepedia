@@ -1,0 +1,169 @@
+
+<!-- Versione desktop della navbar -->
+<ion-toolbar  class="navbar-custom desktop-only">
+  <ion-buttons slot="start">
+    <ion-button [routerLink]="['/home']">Cinepedia</ion-button>
+  </ion-buttons>
+
+   <ion-title >
+    <div *ngIf="VisibleRicercaFilm_Generi()" class="navbar-generi">
+      <ng-container *ngFor="let g of generi">
+        <ion-button fill="clear" class="genere-link" (click)="vaiAGenere(g.id)">
+          {{ g.nome }}
+        </ion-button>
+      </ng-container>
+    </div>
+
+  </ion-title>
+
+  <ion-buttons *ngIf="ruoloUtente=='guest'" slot="end">
+    <ion-button (click)="login()">Login</ion-button>
+  </ion-buttons>
+
+  <ion-buttons slot="end">
+    <ion-button (click)="attivaTendinaAccount()" >
+      <ion-icon class="icona-account" slot="icon-only" name="person-circle-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+
+<div *ngIf="tendinaAccount" class="dropdown-menu desktop-only">
+  <div class="dropdown-left">
+    <div class="username">{{username}}</div>
+    <ion-avatar class="profile-avatar">
+          <img [src]="getImage(user_profile_path)" class="avatar-img" />
+        </ion-avatar>
+  
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="dropdown-right">
+    <div class="sub-dropdown-container">
+      <ion-button *ngIf="ruoloUtente == 'admin'" class="buttonsAccount" fill="clear"(click)="attivaTendinaGestioneDatabase()"><ion-icon slot="start" name="hammer-outline"></ion-icon> <span>Gestione Database</span></ion-button>
+
+      
+      <div *ngIf="tendinaGestioneDB" class="sub-dropdown">
+         <ion-button *ngIf="ruoloUtente=='admin'" [routerLink]="['/carica-film']" class="buttonsAccount" fill="clear">Carica Film</ion-button>
+    <ion-button *ngIf="ruoloUtente=='admin'" [routerLink]="['/modifica-film']"class="buttonsAccount" fill="clear">Modifica Film</ion-button>
+    <ion-button *ngIf="ruoloUtente=='admin'"[routerLink]="['/rimuovi-film']" class="buttonsAccount" fill="clear">Rimuovi Film</ion-button>
+    <ion-button *ngIf="ruoloUtente=='admin'" [routerLink]="['/modifica-attore']" class="buttonsAccount" fill="clear">Modifica Attore</ion-button>
+    <ion-button *ngIf="ruoloUtente=='admin'" [routerLink]="['/rimuovi-attore']" class="buttonsAccount" fill="clear">Rimuovi Attore</ion-button>
+      </div>
+    </div>
+    <ion-button (click)="vaiAGestioneAccount()" class="buttonsAccount" fill="clear"> <ion-icon slot="start" name="settings-outline"></ion-icon><span>Gestione account</span></ion-button>
+    <ion-button  (click)="vaiAFilmPreferiti()"  class="buttonsAccount" fill="clear"><ion-icon slot="start" name="heart-outline"></ion-icon><span>Film preferiti</span></ion-button>
+    <ion-button  *ngIf="!(ruoloUtente=='guest')" (click)="logout()"class="buttonsAccount" fill="clear"><ion-icon slot="start"  name="log-out-outline"></ion-icon><span>Logout</span></ion-button>
+    
+   
+
+  </div>
+</div>
+
+
+
+<!-- Versione mobile della navbar -->
+<ion-toolbar class="navbar-custom mobile-only">
+   <div class="navbar-mobile-flex">
+  <ion-buttons  ><ion-button (click)="MenuMobile()"><ion-icon style="font-size: 30px"  name="menu-outline" ></ion-icon></ion-button>
+</ion-buttons>
+  <ion-title class="navbar-title" [routerLink]="['/home']" >Cinepedia</ion-title>
+  <ion-buttons *ngIf="ruoloUtente=='guest'" >
+    <ion-button (click)="login()">Login</ion-button>
+  </ion-buttons>
+  </div>
+</ion-toolbar>
+
+<div class="mobile-menu-overlay" [ngClass]="{'menu-attivo': menuMobileAperto}" *ngIf="menuMobileAperto" (click)="MenuMobile()">
+  <div class="mobile-menu" (click)="$event.stopPropagation()">
+    <div class="username">{{ username }}</div>
+    <ion-avatar class="profile-avatar">
+          <img [src]="getImage(user_profile_path)" class="avatar-img" />
+        </ion-avatar>
+     <div class="sub-dropdown-container">
+      <ion-button *ngIf="ruoloUtente == 'admin'" class="buttonsAccount" fill="clear"
+        (click)="attivaTendinaGestioneDatabase()">
+        <ion-icon slot="start" class="icone-buttons-account" name="hammer-outline"></ion-icon> <span>Gestione Database</span></ion-button>
+
+      
+      <div *ngIf="tendinaGestioneDB" class="sub-dropdown">
+         <ion-button *ngIf="ruoloUtente=='admin'" [routerLink]="['/carica-film']" class="buttonsAccount" fill="clear">Carica Film</ion-button>
+    <ion-button *ngIf="ruoloUtente=='admin'" [routerLink]="['/modifica-film']"class="buttonsAccount" fill="clear">Modifica Film</ion-button>
+    <ion-button *ngIf="ruoloUtente=='admin'"[routerLink]="['/rimuovi-film']" class="buttonsAccount" fill="clear">Rimuovi Film</ion-button>
+    <ion-button *ngIf="ruoloUtente=='admin'" [routerLink]="['/modifica-attore']" class="buttonsAccount" fill="clear">Modifica Attore</ion-button>
+    <ion-button *ngIf="ruoloUtente=='admin'" [routerLink]="['/rimuovi-attore']" class="buttonsAccount" fill="clear">Rimuovi Attore</ion-button>
+      </div> 
+    </div>
+    
+
+     
+
+
+    <ion-button (click)="vaiAGestioneAccount()" class="buttonsAccount" fill="clear"> <ion-icon slot="start" class="icone-buttons-account" name="settings-outline"></ion-icon><span>Gestione account</span></ion-button>
+
+    <div class="sub-dropdown-container">
+      <ion-button  class="buttonsAccount" fill="clear"
+        (click)="attivaTendinaGeneri()">
+        <ion-icon slot="start" class="icone-buttons-account" name="film-outline"></ion-icon><span>Film</span></ion-button>
+
+      
+      <div *ngIf="tendinaGeneri" class="sub-dropdown">
+        <ng-container *ngFor="let g of generi">
+        <ion-button class="buttonsAccount" fill="clear" class="genere-link" (click)="vaiAGenere(g.id)">
+          {{ g.nome }}
+        </ion-button>
+      </ng-container>
+         
+      </div> 
+    </div>
+
+    <ion-button  (click)="vaiAFilmPreferiti()"  class="buttonsAccount" fill="clear"><ion-icon slot="start"class="icone-buttons-account" name="heart-outline"></ion-icon><span>Film preferiti</span></ion-button>
+    <ion-button  *ngIf="!(ruoloUtente=='guest')"  (click)="logout()"class="buttonsAccount" fill="clear"><ion-icon slot="start" class="icone-buttons-account" name="log-out-outline"></ion-icon><span>Logout</span></ion-button>
+    
+
+
+  </div>
+</div>
+
+
+
+
+
+
+<div *ngIf="VisibleRicercaFilm_Generi()" class="navbar-searchbar-wrapper">
+<div class="searchbar-layout">
+ 
+  <div class="custom-searchbar">
+    
+
+    <input
+      (keyup.enter)="vaiARicercaFilm()"
+      type="text"
+      [(ngModel)]="film_cercato"
+      placeholder="Cerca un film o una persona..."
+      (input)="onInputNomeFilm($event)"
+    />
+    <button *ngIf="film_cercato"class="clear-button"(click)="resetSearch()">✕</button>
+    <button (click)="vaiARicercaFilm()"class="bottone-ricerca" >
+      <img src="assets/icon/search.svg" alt="Cerca" />
+    </button>
+    <ul class="suggerimenti-lista" *ngIf="mostraSuggerimenti ">
+    <h1 style="margin-left: 10px;color: black;">Film</h1>
+     <p *ngIf="suggerimentiFilm.length == 0" style="margin-left: 10px;color: black;">Nessun risultato trovato tra i film</p>
+    <li *ngFor="let film of suggerimentiFilm" (click)="selezionaSuggerimentoFilm(film)">
+       <img [src]="getImage(film.poster_path)" alt="{{ film.title }}"/>
+      <span>{{ film.title }}</span>
+    </li>
+    <h1 style="margin-left: 10px; color: black;">Persone</h1>
+     <p *ngIf="suggerimentiAttori.length == 0" style="margin-left: 10px;color: black;">Nessun risultato trovato tra gli attori</p>
+    <li *ngFor="let attore of suggerimentiAttori" (click)="selezionaSuggerimentoAttore(attore)">
+       <img [src]="getImage(attore.profile_path)" alt="{{ attore.name }}"/>
+      <span>{{ attore.name }}</span>
+    </li>
+  </ul>
+  </div>
+
+  
+</div>
+</div>

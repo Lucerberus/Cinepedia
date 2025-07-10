@@ -1,0 +1,165 @@
+
+
+
+<ion-content *ngIf="!film_selezionato" class="film-content">
+  <div class="center-wrapper">
+ 
+    <div class="custom-searchbar">
+      <input
+        type="text"
+        [(ngModel)]="film_cercato"
+        placeholder="Cerca film da eliminare..."
+         (input)="onInputNomeFilm($event)"
+      />
+      <button *ngIf="film_cercato"class="clear-button"(click)="resetSearch()">✕</button>
+      <button class="bottone-ricerca" ><img src="assets/icon/search.svg" alt="Cerca"/></button>
+
+       <!-- Lista suggerimenti -->
+    <ul class="suggerimenti-lista" *ngIf="suggerimentiFilm.length > 0">
+      <li *ngFor="let film of suggerimentiFilm" (click)="selezionaSuggerimentoFilm(film)" >
+         <img [src]="getImage(film.poster_path)" alt="{{ film.title }}"/>
+         <span>{{ film.title }}</span>
+      </li>
+    </ul>
+    </div>
+   
+  </div>
+  
+</ion-content>
+
+<ion-content  *ngIf= "film_selezionato"class="film-content">
+<!-- Copertina --> 
+ <!--poichè il metodo subscribe è asincorno capitava che al primo click ancora non erano stati caricati i film e quindi fare movie.poster_path dava errore e quindi la pagina html non si apriva
+ invece mettendo un controllo come *ngIf="movie" verifico che l'oggetto movie esista, appena esiste carica la pagina html, faccio così anche con gli attori
+ -->
+  <div class="film-layout">
+    <!-- Copertina -->
+    <div class="film-cover">
+      <ion-card class="cover-wrapper">
+        <div class="NomiCampi">
+  <label class="NomiInput">Titolo</label>
+        <ion-card class="title-card">
+          <ion-card-content>
+            {{title}}
+          </ion-card-content>
+        </ion-card>
+        <img 
+          [src]=getImage(poster_path)
+          class="cover-image">
+          </div>
+      </ion-card>
+    
+
+
+    </div>
+
+ <ion-card class="cover-wrapper2">
+<div class="NomiCampi">
+  <label class="NomiInput">Descrizione</label>
+    <!-- Descrizione -->
+    <ion-card class="description-card">
+      <ion-card-content>
+        {{ overview }}
+      </ion-card-content>
+    </ion-card>
+</div>
+  
+ <div class="input-colonna">
+<div class="input-riga">
+  <div class="NomiCampi">
+  <label class="NomiCampi">Valutazione media</label>
+ <ion-card class="title-card">
+        <ion-card-content>
+          {{vote_average}}
+          </ion-card-content> 
+          </ion-card>       
+</div>
+
+<div class="NomiCampi">
+  <label class="NomiCampi">Durata</label>
+ <ion-card class="title-card">
+        <ion-card-content>
+          {{tempo}}
+          </ion-card-content> 
+          </ion-card>       
+</div>
+
+<div class="NomiCampi">
+  <label class="NomiCampi">Durata</label>
+ <ion-card class="title-card">
+        <ion-card-content>
+          {{regista}}
+          </ion-card-content> 
+          </ion-card>       
+</div>
+           
+
+ <div class="NomiCampi">
+  <label class="NomiCampi">Numero voti</label>
+ <ion-card class="title-card">
+        <ion-card-content>
+          {{vote_count}}
+          </ion-card-content> 
+          </ion-card>        
+      
+</div>
+
+<div class="NomiCampi">
+  <label class="NomiCampi">Data di uscita</label>
+           <ion-card class="title-card">
+        <ion-card-content>
+            {{release_date}}
+          </ion-card-content>
+          </ion-card>
+      </div>   
+     
+
+ <div class="NomiCampi">
+  <label class="NomiCampi">Genere</label>
+ <ion-card class="title-card">
+        <ion-card-content>
+          {{generiFilm}}
+          </ion-card-content> 
+          </ion-card>        
+      
+</div>
+
+</div>
+
+
+
+</div>  
+
+ <ion-card class="cover-bottoni">
+  <ion-button class="AnnullaButton" fill="clear " (click)="apriConfermaAnnulla()">Annulla</ion-button>
+<ion-button class="RimuoviButton" fill="clear " (click)="apriConferma()" >Rimuovi Film</ion-button>
+  </ion-card>
+
+
+
+
+
+</ion-card>
+  </div>
+
+  <!-- Attori -->
+  <h2 class="cast-title">Attori</h2>
+   <div class="scroll-section">
+   <button class="scroll-button left" (click)="scrollLeft('attori')" [disabled]="!attori?.length">◀</button>
+  <div #scrollContainer class="cast-scroll" id="attori">
+    <div *ngFor="let attore of attori" class="cast-item">
+        <ion-card *ngIf="attore" class="actor-card">
+          <img [src]=getImage(attore.profile_path) class="actor-image">
+          <ion-card-content class="actor-name">
+            {{ attore?.name }}
+          </ion-card-content>
+          <ion-card-content class="character-name">
+            {{ attore?.character_name }}
+          </ion-card-content>
+        </ion-card>
+    </div>
+     <button class="scroll-button right" (click)="scrollRight('attori')"[disabled]="!attori?.length">▶</button>
+  </div>
+  </div>
+
+</ion-content>

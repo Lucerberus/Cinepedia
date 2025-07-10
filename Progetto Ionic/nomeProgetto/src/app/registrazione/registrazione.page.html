@@ -1,0 +1,76 @@
+
+
+<ion-content [fullscreen]="true" style="--background: #0a0909;">
+<div *ngIf="!emailInviata" class="flex-center">
+  <ion-card class="scheda-registrazione">
+    <ion-card-header>
+      <ion-card-title style="color: white;">Cinepedia</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content >
+      <ion-item class="campi" lines="inset">
+        <ion-label position="floating">Email</ion-label>
+         <ion-input type="Email" [(ngModel)]="email"></ion-input>
+      </ion-item>
+      <p class="errore" *ngIf="erroreEmailValidator">*Email inserita non valida</p>
+      <p class="errore" *ngIf="erroreEmailEsistente">*Email già associata ad un account</p>
+
+
+      <ion-item class="campi">
+        <ion-label position="floating">Username</ion-label>
+         <ion-input type="text" [(ngModel)]="username"></ion-input>      
+      </ion-item>
+      <p class="errore" *ngIf="erroreUsernameEsistente">*Username già utilizzato</p>
+
+      <ion-item class="campi">
+        <ion-label position="floating">Password</ion-label>
+         <ion-input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password"></ion-input>
+           <ion-button  fill="clear" slot="end" (click)="passwordVisibile()" style="margin-top: 30px;">
+          <img [src]="showPassword ? 'assets/icon/eye.svg' : 'assets/icon/eye-off.svg'" width="24" height="24" />
+        </ion-button>
+      </ion-item>
+
+      <ion-item class="campi">
+        <ion-label position="floating">Conferma password</ion-label>
+         <ion-input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="confermaPassword"></ion-input>
+      </ion-item>
+
+    </ion-card-content>
+    <p class="errore" *ngIf="erroreCampiNonCompilati">*Compilare tutti i campi</p>
+    <p class="errore" *ngIf="errorePasswordValidator">*La password deve essere di almeno 8 caratteri, deve contenere almeno: una lettera maiuscola, una minuscola,un numero ed un carattere speciale</p>
+    <p class="errore" *ngIf="errorePassword">*Le password non coincidono</p>
+<div class="bottone-centrato">
+   <ion-button fill="clear"   class="registratiButton" (click)="doRegistrazione()">Registrati</ion-button>
+    <ion-button fill="clear" class="InvioButton" [routerLink]="['/login']">Annulla</ion-button>
+</div>
+  </ion-card>
+
+
+</div>
+
+
+
+
+ <div *ngIf="emailInviata" class="flex-center">
+    <ion-card class="scheda-registrazione">
+      <ion-card-header>
+        <ion-card-title style="color: white;">Cinepedia</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+       <p class="info-email">Ti abbiamo inviato all'email {{email}} un link per confermare la registrazione</p>
+        <p class="info-email">Il link rimarrà valido per 5 minuti, se non si conferma entro questo tempo la registrazione fallirà</p>
+      </ion-card-content>
+
+      <div class="bottone-centrato"> 
+        <ion-button fill="clear" [routerLink]="['/login']" class="InvioButton">ok</ion-button>
+        
+      </div>
+    </ion-card>
+  </div>
+
+
+
+
+</ion-content>
+

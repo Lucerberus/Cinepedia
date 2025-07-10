@@ -1,0 +1,71 @@
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    height: 100%;
+
+}
+
+.scheda-login{
+   background-color: #0a0909;
+      border: solid white 1px;
+   color: white;
+}
+
+.campi{
+    --background: #0a0909; color: white; 
+    --highlight-color-focused: white;
+  --highlight-color: white;
+  --border-color: white;
+  --color: white;
+}
+
+.bottone-centrato {
+
+
+   display: flex;
+  flex-direction: column; 
+  align-items: center;     
+  margin-top: 24px;
+}
+
+.accediButton{
+    border: solid white 1px;
+   color: white;
+   margin: 10px;
+  
+}
+
+ion-input{
+    margin-top: 7px;
+    
+}
+
+
+.registratiButton{
+    border: solid black 1px;
+   color: black;
+   background-color: white;
+   margin: 10px;
+   margin-top: 30px;
+   margin-bottom: 40px;
+  
+}
+
+.recuperaCredenzialiButton {
+  font-size: 12px;
+  color: #cccccc;
+  text-decoration: underline;
+  margin-top: 10px;
+}
+.errore {
+  color: red;
+  font-size: 13px;
+  margin-top: 0px;
+  //per far andare accapo il testos
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: break-word;
+  display: block;
+  padding: 10px;
+}

@@ -1,0 +1,42 @@
+
+
+<ion-content [fullscreen]="true" style="--background: #0a0909;">
+
+ <div *ngIf="accountConfermato" class="flex-center">
+    <ion-card class="scheda-registrazione">
+      <ion-card-header>
+        <ion-card-title style="color: white;">Cinepedia</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+          <p class="info-email">Ciao {{username}} ,benvenuto su Cinepedia!</p>
+       <p class="info-email">Il tuo account è stato confermato,procedi con il login per accedere al nostro sito</p>
+      </ion-card-content>
+
+      <div class="bottone-centrato"> 
+        <ion-button fill="clear" [routerLink]="['/login']" class="InvioButton">continua</ion-button>
+        
+      </div>
+    </ion-card>
+  </div>
+
+
+<div *ngIf="!accountConfermato" class="flex-center">
+    <ion-card class="scheda-registrazione">
+      <ion-card-header>
+        <ion-card-title style="color: white;">Cinepedia</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+       <p class="info-recupero">
+     Token non valido o scaduto, riprovare!
+</p>
+      </ion-card-content>
+      <div class="bottone-centrato">      
+        <ion-button fill="clear" class="InvioButton" [routerLink]="['/login']">ok</ion-button>
+      </div>
+    </ion-card>
+  </div>
+
+</ion-content>
+

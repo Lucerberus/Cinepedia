@@ -1,0 +1,17 @@
+.server-offline-content {
+  --background: #100e0e;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.server-warning-box {
+    color:white;
+  text-align: center;
+  padding: 2rem;
+  border: 2px solid red;
+  border-radius: 10px;
+  background-color: #2a0000;
+}

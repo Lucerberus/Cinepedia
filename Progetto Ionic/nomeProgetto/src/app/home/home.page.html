@@ -1,0 +1,62 @@
+
+
+<ion-content style=" --background: #100e0e;">
+  <!-- Nuove Uscite -->
+  <h2>Nuove Uscite</h2>
+  <div *ngIf="moviesNuoveUscite" class="scroll-section">
+    <button class="scroll-button left" (click)="scrollLeft('nuoveUscite')">◀</button>
+
+    <div class="scroll-wrapper" id="nuoveUscite">
+      <div *ngFor="let movie of moviesNuoveUscite">
+        <div (click)="vaiADettagli(movie.id)" class="clickable-card">
+          <ion-card>
+            <img [src]="getImage(movie.poster_path)" />
+          </ion-card>
+        </div>
+        <div *ngIf="utenteRuolo === 'admin'" class="sezione-edit-remove">
+          <ion-button fill="clear" (click)="vaiAModifica(movie.id)">
+            <img src="assets/icon/pencil.svg" width="20" height="20" />
+          </ion-button>
+          <ion-button fill="clear" (click)="vaiARimuovi(movie.id)">
+            <img src="assets/icon/circle-x.svg" width="20" height="20" />
+          </ion-button>
+        </div>
+      </div>
+    </div>
+
+    <button class="scroll-button right" (click)="scrollRight('nuoveUscite')">▶</button>
+  </div>
+
+  <!-- Per ogni genere -->
+  <ng-container *ngFor="let g of generi">
+    <h2>{{ g.nome }}</h2>
+    <div *ngIf="moviesPerGenere" class="scroll-section">
+      <button class="scroll-button left" (click)="scrollLeft('genere' + g.id)">◀</button>
+
+      <div class="scroll-wrapper" [attr.id]="'genere' + g.id">
+        <div *ngFor="let movie of moviesPerGenere[g.id]">
+          <div (click)="vaiADettagli(movie.id)" class="clickable-card">
+            <ion-card>
+              <img class="card-hover-effect" [src]="getImage(movie.poster_path)" />
+            </ion-card>
+          </div>
+          <div *ngIf="utenteRuolo === 'admin'" class="sezione-edit-remove">
+            <ion-button fill="clear" (click)="vaiAModifica(movie.id)">
+              <img src="assets/icon/pencil.svg" width="20" height="20" />
+            </ion-button>
+            <ion-button fill="clear" (click)="vaiARimuovi(movie.id)">
+              <img src="assets/icon/circle-x.svg" width="20" height="20" />
+            </ion-button>
+          </div>
+        </div>
+      </div>
+
+      <button class="scroll-button right" (click)="scrollRight('genere' + g.id)">▶</button>
+    </div>
+  </ng-container>
+
+
+
+  
+
+</ion-content>

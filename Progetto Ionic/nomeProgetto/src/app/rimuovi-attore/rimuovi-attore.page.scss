@@ -1,0 +1,437 @@
+.film-content {
+  --background: #100e0e;
+  color: white;
+}
+
+
+
+
+.input-colonna {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem 2rem 0 2rem; /* margini per farlo combaciare col resto */
+}
+.center-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+
+  position: relative;
+  padding: 1rem;
+
+  /* Fissa la posizione iniziale centrata, ma limita lo spostamento verso l'alto */
+  min-height: 200px;
+  margin-top: max(10vh, 70px); /* mai meno di 70px sotto la navbar */
+}
+
+.custom-searchbar {
+   color: black;
+     &::placeholder {
+    color: #888; 
+    opacity: 1;  
+  }
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 2000px;
+  width: 100%;
+  gap: 0.5rem;
+  z-index: 2;
+  position: relative;
+}
+
+
+.CampiInput {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; // spazio tra label e card
+}
+
+.input-riga {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin: 1rem 2rem 0 2rem; /* margini per farlo combaciare col resto */
+}
+.cover-wrapper2 {
+   display: flex;
+  flex-direction: column;
+  align-items: center;
+    background: none;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+  }
+
+   .cover-bottoni{
+
+     background: none;
+    box-shadow: none;
+    margin-top: 50px;
+    padding: 0;
+     display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  }
+
+
+.custom-searchbar input {
+  flex: 1;
+  height: 80px;
+  border: none;
+  outline: none;
+  font-size: 40px;
+  border-radius: 8px;
+  padding: 0 1rem;
+  background-color: #f9f9f9;
+}
+
+.NomiCampi {
+  display: block;
+  color: white;
+  text-align: center;
+  margin-bottom: 0px;
+  font-weight: 500;
+}
+
+
+.clear-button {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  color: #666;
+  cursor: pointer;
+  margin-right: 0.3rem;
+}
+
+
+
+
+.bottone-ricerca {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  img {
+    height: 40px; 
+    width: 40px;
+   
+  }
+
+}
+
+.suggerimenti-lista {
+  list-style: none;
+  padding: 0;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  width: 100%; /* prende la larghezza del container genitore */
+  position: absolute;
+  top: calc(100% + 10px); /* 10px sotto la searchbar */
+  left: 0;
+
+  z-index: 3;
+  overflow-y: auto;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+
+    &:hover {
+      background-color: #f5f5f5;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+    }
+
+    span {
+      font-size: 18px;
+      color: #000000;
+      line-height: 1.2;
+    }
+  }
+}
+
+
+
+ion-card-content{
+color:white;
+}
+
+
+.film-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 2rem;
+ 
+  margin: 2rem auto; //margine sopra e sotto di 2rem cioè 2*fontBase
+  //il contenuto si espande fino ad un massimo di 1500px
+  //in questa maniera per schermi molto grandi il contenuto tende ad accentrarsi
+  //invece per schermi medi tipo i portatili si vede a riempimento 
+  //nei mobile invece tranquillamente tutto incolonnato come dovrebbe essere
+  max-width: 1500px; 
+  width: 100%;
+  justify-content: center;
+
+  .film-cover {
+    flex-shrink: 0;
+    width: clamp(120px, 20vw, 300px);
+  }
+
+  .cover-wrapper {
+    background: none;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .title-card {
+    background-color: #0f0d0d;
+     border: solid white 1px;
+    font-size: 150%;
+    text-align: center;
+  }
+
+  .cover-image {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+  }
+
+  .description-card {
+     border: solid white 1px;
+    background-color: #0f0d0d;
+    flex-grow: 1;
+  }
+}
+
+/* Attori */
+.cast-title {
+  margin: 8px 0 0 10px;
+  color: white;
+}
+
+.cast-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding: 1rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.cast-item {
+  flex: 0 0 auto;
+  width: clamp(120px, 10vw, 200px);
+}
+
+
+.actor-card {
+  background: none;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+}
+
+.actor-image {
+  width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+}
+
+.actor-name {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.character-name{
+  text-align: center;
+  color: rgb(125, 122, 122);
+  margin-top: -25px;
+}
+
+
+.scroll-section {
+  position: relative;
+
+  &:hover .scroll-button {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.scroll-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  opacity: 0; // inizialmente nascoste
+  pointer-events: none; // non cliccabili se invisibili
+  transition: opacity 0.3s ease;
+
+  &.left {
+    left: 5px;
+  }
+
+  &.right {
+    right: 5px;
+  }
+}
+
+
+.scroll-button.left {
+      left: 5px;
+    }
+
+  .scroll-button.right {
+      right: 5px;
+  }
+.RimuoviButton{
+    border: solid rgb(255, 0, 0) 1px;
+   color: red;
+   margin: 10px;
+  
+}
+
+
+.AnnullaButton{
+    border: solid white 1px;
+   color: white;
+   margin: 10px;
+  
+}
+
+// Responsive layout per mobile 
+@media (max-width: 768px) {
+  //da mobile nascondo le frecce per scorrere
+.scroll-button {
+    display: none;
+  }
+  .film-layout {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+
+    .film-cover {
+      width: 80%;
+    }
+
+    .description-card {
+      width: 90%;
+    }
+  }
+
+.input-riga {
+  display: flex;
+  flex-direction: column;
+   flex: 0 0 auto;
+  gap: 1rem;
+  margin: 1rem 2rem 0 2rem; /* margini per farlo combaciare col resto */
+}
+
+
+  .custom-searchbar {
+    position: relative; 
+    max-width: 100%;
+    padding: 0.5rem;
+    flex-direction: row;
+  }
+
+  .custom-searchbar input {
+    font-size: 20px;
+    height: 50px;
+    color: black ;
+  }
+
+  .bottone-ricerca img {
+    height: 28px;
+    width: 28px;
+  }
+.suggerimenti-lista {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    width: 100%;
+    z-index: 3;
+    max-height: 350px;
+    overflow-y: auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 0;
+  }
+
+  .suggerimenti-lista li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .suggerimenti-lista li:last-child {
+    border-bottom: none;
+  }
+
+  .suggerimenti-lista img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+  }
+
+  .suggerimenti-lista span {
+    font-size: 18px;
+    color: #000;
+    line-height: 1.2;
+  }
+}
+
+
+//per portatili
+@media (min-width:1000px) and (max-width:1700px) {
+  //rimpicciolisco un pò la search bar
+  .custom-searchbar {
+    position: relative; 
+    max-width: 80%;
+    padding: 0.5rem;
+    flex-direction: row;
+    
+  }
+
+  
+}

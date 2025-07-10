@@ -1,0 +1,116 @@
+ion-content {
+  --background: #100e0e;
+  color: white;
+}
+
+// Titoli sezioni
+h2 {
+  margin: 8px 0 0 10px;
+  color: white;
+}
+
+// Wrapper scrollabile orizzontalmente
+.scroll-wrapper {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  gap: 15px;
+  padding: 1rem;
+  margin: 0;
+  scroll-behavior: smooth;
+
+  scrollbar-width: none; // Firefox
+  -ms-overflow-style: none; // IE/Edge
+
+  &::-webkit-scrollbar {
+    display: none; // Chrome/Safari
+  }
+
+  > div {
+    flex: 0 0 auto;
+    width: clamp(120px, 10vw, 200px);
+  }
+}
+
+// Sezione che contiene scroll e frecce
+.scroll-section {
+  position: relative;
+
+  &:hover .scroll-button {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+// Bottoni di scroll sinistra/destra
+.scroll-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+
+  &.left {
+    left: 5px;
+  }
+
+  &.right {
+    right: 5px;
+  }
+}
+
+// Card effetto hover
+.scroll-section ion-card {
+  height: 100%;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.scroll-section ion-card:hover {
+  transform: scale(1.05);
+}
+
+// Stile delle immagini dentro ion-card
+ion-card img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+
+// Card layout base
+ion-card {
+  background: none;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+}
+
+// Per clickable div
+.clickable-card {
+  cursor: pointer;
+}
+
+// Sezione modifica/rimuovi (solo admin)
+.sezione-edit-remove {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+//da mobile nascondo le frecce per scorrere
+@media screen and (max-width: 768px) {
+  .scroll-button {
+    display: none;
+  }
+}

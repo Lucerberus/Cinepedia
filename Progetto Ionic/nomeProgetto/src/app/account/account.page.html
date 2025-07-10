@@ -1,0 +1,144 @@
+
+
+<ion-content class="page">
+ <div class="profile-header">
+  <div class="profile-container">
+    
+     <!-- COLONNA SINISTRA -->
+    <div class="avatar-column">
+      <div class="username-wrapper">
+         <ion-item *ngIf="modificaUsernameAttiva" class="campo-user">
+            <ion-input type="text" [(ngModel)]="nuovoUsername"></ion-input>
+          </ion-item>
+  <p class="errore" *ngIf="erroreUsernameVuoto">*Username non valido</p>
+    <p class="errore" *ngIf="erroreUsernameUguale">*Username uguale a quello attuale</p>
+    <p class="errore" *ngIf="erroreUsernameEsistente">*Username già utilizzato</p>
+          
+  <h2 *ngIf="!modificaUsernameAttiva" class="username">{{ user }}</h2>
+  <ion-button *ngIf="!modificaUsernameAttiva" class="pencil-button" (click)="attivaModUsername()" fill="clear" >
+    <img src="assets/icon/pencil.svg" width="20" height="20" />
+  </ion-button>
+  <ion-card  *ngIf="modificaUsernameAttiva"class="cover-bottoni">
+      <ion-button class="Button" fill="clear "expand="block"  (click)="chiudiModificheUsername()">Annulla</ion-button>
+
+<ion-button class="ModificaButton" fill="clear "expand="block" (click)="modificaUsername()">modifica</ion-button>
+  </ion-card>
+</div>
+
+      <div class="avatar-wrapper">
+        <ion-avatar class="profile-avatar">
+          <img [src]="getImageProfile(user_profile_path)" class="avatar-img" />
+        </ion-avatar>
+      </div>
+
+      <div class="upload-wrapper">
+        <input type="file" accept="image/*" (change)="onImageSelected($event)" hidden #fileInput />
+        <ion-button  *ngIf="!modificaImageAttiva" (click)="triggerImagePicker()" fill="clear" ><img src="assets/icon/pencil.svg" width="20" height="20" /></ion-button>
+        <ion-card  *ngIf="modificaImageAttiva" class="cover-bottoni">
+      <ion-button class="Button" fill="clear "expand="block"  (click)="chiudiModificheImage()">Annulla</ion-button>
+
+<ion-button class="ModificaButton" fill="clear "expand="block" (click)="modificaProfiloImage()">modifica</ion-button>
+  </ion-card>
+      </div>
+    </div>
+
+    
+    <!-- COLONNA DESTRA -->
+    <div class="info-column">
+      <label class="email-label">Email</label>
+      <label class="email-field">{{email}}</label>
+
+      <div *ngIf="modificaPasswordAttiva">
+      <ion-item class="campi">
+        
+            <ion-label  class="NomiInput" position="floating">Password attuale</ion-label>
+             <ion-input   [type]="showPassword ? 'text' : 'password'" [(ngModel)]="passwordAttuale"></ion-input>
+              <ion-button  fill="clear" slot="end" (click)="passwordVisibile()" style="margin-top: 30px;">
+          <img [src]="showPassword ? 'assets/icon/eye.svg' : 'assets/icon/eye-off.svg'" width="24" height="24" />
+        </ion-button>
+          </ion-item>
+          <p class="errore" *ngIf="errorePassword1">*Password corrente errata!</p>
+          
+
+          <ion-item class="campi">
+            <ion-label class="NomiInput" position="floating">Nuova password</ion-label>
+            <ion-input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="nuovaPassword"></ion-input>
+          </ion-item>
+
+          <ion-item class="campi">
+            <ion-label class="NomiInput" position="floating">Conferma nuova password</ion-label>
+            <ion-input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="confermaPassword"></ion-input>
+          </ion-item>
+            <p class="errore" *ngIf="erroreCampiNonCompilati">*Compilare tutti i campi</p>
+            <p class="errore" *ngIf="errorePasswordValidator">*La password deve essere di almeno 8 caratteri, deve contenere almeno: una lettera maiuscola, una minuscola,un numero ed un carattere speciale</p>
+            <p class="errore" *ngIf="errorePassword2">*Le due password non coincidono</p>
+            <p class="errore" *ngIf="errorePassword3">*La nuova password non può essere uguale a quella corrente</p>
+
+        </div>
+           <ion-card  *ngIf="modificaPasswordAttiva"class="cover-bottoni">
+      <ion-button class="Button" fill="clear "expand="block"  (click)="chiudiModifiche()">Annulla</ion-button>
+
+<ion-button class="ModificaButton" fill="clear "expand="block" (click)="modificaPassword()">modifica</ion-button>
+  </ion-card>
+
+
+      <ion-button  *ngIf="!modificaPasswordAttiva"(click)="attivaModPassword()" class="Button" fill="clear" size="small">
+        Modifica password
+      </ion-button>
+    </div>
+
+
+
+</div>
+  </div>
+
+
+ <h2 [routerLink]="['/film-preferiti']" class="titolo-sezione">Film tra i preferiti</h2>
+<div *ngIf="filmPreferiti.length == 0" class="nessun-risultato">
+  Nessun film tra i preferiti
+</div>
+<div *ngIf="filmPreferiti.length > 0" class="scroll-section">
+  <button class="scroll-button left" (click)="scrollLeft('preferiti')">◀</button>
+  <div class="scroll-wrapper scroll-container" id="preferiti">
+    <div *ngFor="let film of filmPreferiti" class="card-film-container">
+      <div (click)="vaiADettagli(film.id)" class="card-click">
+        <ion-card class="card-film">
+          <img [src]="getImageFilm(film.poster_path)" class="poster-film">
+        </ion-card>
+      </div>
+    </div>
+  </div>
+  <button class="scroll-button right" (click)="scrollRight('preferiti')">▶</button>
+</div>
+
+<h2 class="titolo-sezione">Film valutati</h2>
+<div *ngIf="filmValutati.length == 0" class="nessun-risultato">
+  Nessun film tra i valutati
+</div>
+<div *ngIf="filmValutati.length > 0" class="scroll-section">
+  <button class="scroll-button left" (click)="scrollLeft('valutati')">◀</button>
+  <div class="scroll-wrapper scroll-container" id="valutati">
+    <div *ngFor="let film of filmValutati" class="card-film-container">
+      <div (click)="vaiADettagli(film.id)" class="card-click">
+        <ion-card class="card-film">
+          <img [src]="getImageFilm(film.poster_path)" class="poster-film">
+          <ion-card-content class="valutazione">
+            <p class="testo-valutazione">La tua valutazione</p>
+            <div class="star-rating">
+              <ng-container *ngFor="let star of stars; let i = index">
+                <ion-icon [name]="getStarIcon(i, film)" class="star"></ion-icon>
+              </ng-container>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </div>
+  <button class="scroll-button right" (click)="scrollRight('valutati')">▶</button>
+</div>
+
+
+
+
+
+</ion-content>

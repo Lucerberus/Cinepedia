@@ -1,0 +1,54 @@
+
+::ng-deep .mat-dialog-container {
+  background-color: #100e0e !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border-radius: 20px !important; /* opzionale */
+}
+
+.dialog-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 0px;
+  background-color: #100e0e;
+   text-align: center;
+}
+
+.dialog-content {
+background-color: #100e0e;
+  font-size: 18px;
+  padding: 10px;
+  color: white;
+  text-align: center;
+}
+
+.dialog-actions {
+    background-color: #100e0e;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+
+.btn-annulla {
+    background-color: white;
+  border: 1px solid #ccc;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: #f2f2f2;
+  }
+}
+
+.btn-conferma {
+  background-color: white;
+
+     border: 1px solid #ccc;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: white;
+  }
+}

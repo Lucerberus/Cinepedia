@@ -1,0 +1,203 @@
+
+
+
+<ion-content class="film-content">
+<!-- Copertina --> 
+ <!--poichè il metodo subscribe è asincorno capitava che al primo click ancora non erano stati caricati i film e quindi fare movie.poster_path dava errore e quindi la pagina html non si apriva
+ invece mettendo un controllo come *ngIf="movie" verifico che l'oggetto movie esista, appena esiste carica la pagina html, faccio così anche con gli attori
+ -->
+  <div *ngIf="movie" class="film-layout">
+    <!-- Copertina -->
+    <div class="film-cover">
+      <ion-card class="cover-wrapper">
+        <div class="NomiCampi">
+        <ion-card class="title-card">
+          <ion-card-content>
+            {{movie.title}}
+          </ion-card-content>
+        </ion-card>
+        <div class="copertina">
+        <img [src]=getImage(movie.poster_path) class="cover-image">
+        
+        </div>
+        <div *ngIf="movie.video" class="trailer-button-wrapper">
+  <ion-button  class="bottone-trailer" fill="clear" (click)="vaiATrailer()" >
+   <ion-icon style="margin-right: 10px; color: red;"name="logo-youtube"></ion-icon>
+   Guarda il trailer
+  </ion-button>
+</div>
+          
+          </div>          
+      </ion-card>
+    
+
+
+    </div>
+
+ <ion-card class="cover-wrapper2">
+  
+<div class="NomiCampi">
+  
+    <!-- Descrizione -->
+    <ion-card class="description-card">
+
+      <ion-card-content>
+          {{ getOverview(movie.overview)}}
+      </ion-card-content>
+    </ion-card>
+</div>
+  
+ <div class="input-colonna">
+<div class="input-riga">
+  <div class="NomiCampi">
+  <label class="NomiCampi">Durata</label>
+ <ion-card class="title-card">
+        <ion-card-content>
+           {{ getData(movie.tempo)}}'
+          </ion-card-content> 
+          </ion-card>       
+</div>
+
+<div class="NomiCampi">
+  <label class="NomiCampi">Regista</label>
+  <div (click)="vaiADettagli(regista.id) " class="clickable-card">
+ <ion-card class="title-card">
+        <ion-card-content>
+           {{ getData(regista.name)}}
+          </ion-card-content> 
+          </ion-card>    
+          </div>   
+</div>
+
+  <div class="NomiCampi">
+  <label class="NomiCampi">Valutazione media</label>
+ <ion-card class="title-card">
+        <ion-card-content>
+          {{getData(movie.vote_average)}}
+          </ion-card-content> 
+          </ion-card>       
+</div>
+           
+
+ <div class="NomiCampi">
+  <label class="NomiCampi">Numero voti</label>
+ <ion-card class="title-card">
+        <ion-card-content>
+          {{getData(movie.vote_count)}}
+          </ion-card-content> 
+          </ion-card>        
+      
+</div>
+
+<div class="NomiCampi">
+  <label class="NomiCampi">Data di uscita</label>
+           <ion-card class="title-card">
+        <ion-card-content>
+            {{getData(movie.release_date)}}
+          </ion-card-content>
+          </ion-card>
+      </div>   
+     
+
+ <div class="NomiCampi">
+  <label class="NomiCampi">Genere</label>
+ <ion-card class="title-card">
+        <ion-card-content>
+        {{getData(generiFilm)}}
+          </ion-card-content> 
+          </ion-card>        
+      
+</div>
+
+
+
+</div>
+<div class="sezione-cuore">
+<div title="Aggiungi ai preferiti" *ngIf="preferito" class="heart-container" [class.animate]="animazione_cuore" (click)="aggiungi_rimuoviPreferiti()">
+        <ion-icon name="heart" [class.filled]="preferito" class="heart-icon"></ion-icon>
+        </div>
+
+        <div title="Rimuovi dai preferiti" *ngIf="!preferito" class="heart-container" [class.animate]="animazione_cuore" (click)="aggiungi_rimuoviPreferiti()">
+        <ion-icon name="heart-outline" [class.filled]="preferito" class="heart-icon"></ion-icon>
+        </div>
+        </div>
+  <div class="sezione-cuore">
+      <div class="valutazione">
+    <p style="color:white">La tua valutazione</p>      
+    <div class="star-rating" (mouseleave)="resetHover()" >
+  <ion-icon  (click)="annullaValutazione()"   class="icona-annullaValutazione"*ngIf="modificaValutazioneAttiva" name="remove-circle-outline"></ion-icon>
+
+  
+      <ng-container *ngFor="let star of stars; let i = index">
+    <ion-icon
+      [name]="getStarIcon(i)"
+      (mouseenter)="onHoverStar(i, $event)"
+      (mousemove)="onDetectHalf($event, i)"
+      (click)="onClickStar(i)"
+      class="star"
+    ></ion-icon>
+  </ng-container>
+</div>
+          </div>
+          </div>
+
+</div>  
+
+ 
+
+
+
+
+
+</ion-card>
+  </div>
+  
+
+
+ 
+
+
+
+
+
+    <!-- Attori -->
+  <h2 class="cast-title">Attori</h2>
+   <div class="scroll-section">
+   <button class="scroll-button left" (click)="scrollLeft()" [disabled]="!attori?.length">◀</button>
+  <div #scrollContainer class="cast-scroll" id="attori">
+    <div *ngFor="let attore of attori" class="cast-item">
+      <div (click)="vaiADettagli(attore.id) " class="clickable-card">
+        <ion-card *ngIf="attore" class="actor-card">
+          <img [src]=getImage(attore.profile_path) class="actor-image">
+          <ion-card-content class="actor-name">
+            {{ getData(attore?.name) }}
+          </ion-card-content>
+          <ion-card-content class="character-name">
+            {{ getData(attore?.character_name) }}
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <div *ngIf="ruoloUtente=='admin'" class="sezione-edit-remove">
+            <ion-button (click)="vaiAModifica(attore.id)" fill="clear" >
+              <img src="assets/icon/pencil.svg" width="20" height="20" />
+            </ion-button>
+            <ion-button (click)="vaiARimuovi(attore.id)" fill="clear" >
+              <img src="assets/icon/circle-x.svg" width="20" height="20" />
+            </ion-button>
+          </div>
+    </div>
+  </div>
+       <button class="scroll-button right" (click)="scrollRight()"[disabled]="!attori?.length">▶</button>
+
+  </div>
+
+
+
+</ion-content>
+
+
+
+
+
+
+

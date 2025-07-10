@@ -1,0 +1,43 @@
+
+
+
+<ion-content [fullscreen]="true" style="--background: #0a0909;">
+<div class="flex-center">
+  <ion-card class="scheda-login">
+    <ion-card-header>
+      <ion-card-title style="color: white;">Cinepedia</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content >
+      <ion-item class="campi">
+        <ion-label position="floating">Email</ion-label>
+         <ion-input (keyup.enter)="doLogin()" type="Email" [(ngModel)]="email"></ion-input>
+      </ion-item>
+       <p class="errore" *ngIf="erroreEmail">*Non esiste nessun account con questa email</p>
+
+      <ion-item class="campi">
+        <ion-label position="floating">Password</ion-label>
+         <ion-input (keyup.enter)="doLogin()"  [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password"></ion-input>
+           <ion-button  fill="clear" slot="end" (click)="passwordVisibile()" style="margin-top: 30px;">
+          <img [src]="showPassword ? 'assets/icon/eye.svg' : 'assets/icon/eye-off.svg'" width="24" height="24" />
+        </ion-button>
+      </ion-item>
+       <p class="errore" *ngIf="errorePassword">*Password errata</p>
+
+    </ion-card-content>
+
+    <div class="bottone-centrato"> 
+    <ion-button  fill="clear" class="accediButton" (click)="doLogin()">Accedi</ion-button>
+     <!-- Nuovo bottone "Recupera credenziali" -->
+  <ion-button fill="clear" class="recuperaCredenzialiButton" [routerLink]="['/richiedi-recupera-password']">
+    Recupera credenziali
+  </ion-button>
+    <ion-button  fill="clear" class="registratiButton"  [routerLink]="['/registrazione']">Registrati</ion-button>
+</div>
+ 
+
+  </ion-card>
+
+
+</div>
+</ion-content>

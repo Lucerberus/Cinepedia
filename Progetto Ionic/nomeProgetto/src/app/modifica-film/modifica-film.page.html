@@ -1,0 +1,311 @@
+
+
+
+
+<ion-content *ngIf="!film_selezionato" class="film-content">
+  <div class="center-wrapper">
+ 
+    <div class="custom-searchbar">
+      <input
+        type="text"
+        [(ngModel)]="film_cercato"
+        placeholder="Cerca film da modificare..."
+         (input)="onInputNomeFilm($event)"
+      />
+      <button *ngIf="film_cercato"class="clear-button"(click)="resetSearch()">✕</button>
+      <button class="bottone-ricerca" ><img src="assets/icon/search.svg" alt="Cerca"/></button>
+
+       <!-- Lista suggerimenti -->
+    <ul class="suggerimenti-lista-film" *ngIf="suggerimentiFilm.length > 0">
+      <li *ngFor="let film of suggerimentiFilm" (click)="selezionaSuggerimentoFilm(film)" >
+         <img [src]="getImage(film.poster_path)" alt="{{ film.title }}"/>
+         <span>{{ film.title }}</span>
+      </li>
+    </ul>
+    </div>
+   
+  </div>
+  
+</ion-content>
+
+<ion-content *ngIf="film_selezionato" class="film-content">
+<!-- Copertina --> 
+ <!--poichè il metodo subscribe è asincorno capitava che al primo click ancora non erano stati caricati i film e quindi fare movie.poster_path dava errore e quindi la pagina html non si apriva
+ invece mettendo un controllo come *ngIf="movie" verifico che l'oggetto movie esista, appena esiste carica la pagina html, faccio così anche con gli attori
+ -->
+  <div class="film-layout">
+    <!-- Copertina -->
+    <div class="film-cover">
+      <ion-card class="cover-wrapper">
+        <div class="CampiInput">
+  <label class="NomiInput">Titolo</label>
+        <ion-card class="title-card">
+          <ion-card-content>
+             <ion-input [(ngModel)]="title" placeholder="Titolo del film..."></ion-input>
+          </ion-card-content>
+        </ion-card>
+                 <p class="errore" *ngIf="erroreTitolo">*Inserire un titolo valido </p>
+
+        </div>
+        <img 
+            [src]="getImage(poster_path)"
+          class="cover-image">
+          <input type="file" accept="image/*" (change)="onImageSelected($event,'film')" hidden #fileInput>
+          <ion-button fill="clear "expand="block" (click)="fileInput.click()">Carica foto</ion-button>
+      </ion-card>
+       <p class="errore" *ngIf="errorePoster">*Inserire una copertina per il film </p>
+    </div>
+
+    <!-- Descrizione -->
+     <ion-card class="cover-wrapper2">
+      <div class="CampiInput">
+  <label class="NomiInput">Descrizione</label>
+    <ion-card class="description-card1">
+      <ion-card-content>
+       <ion-textarea [(ngModel)]="overview" placeholder="Descrizione..." autoGrow="true"></ion-textarea>
+      </ion-card-content>
+    </ion-card>
+       <p class="errore" *ngIf="erroreDescrizione">*Inserire una descrizione valida </p>
+    </div>
+  
+
+  <div class="input-colonna">
+<div class="input-riga">
+  <div class="CampiInput">
+  <label class="NomiInput">durata</label>
+ <ion-card class="title-card">
+        <ion-card-content>
+             <ion-input style="text-align: center; width: 100%;"  [(ngModel)]="durata" type="number" placeholder ="(minuti)"></ion-input>
+          </ion-card-content> 
+          </ion-card>       
+          <p class="errore" *ngIf="erroreDurata">*Inserire una durata in minuti valida </p>
+</div>
+<div class="CampiInput">
+  <label class="NomiInput">Regista</label>
+     <ion-card class="title-card">
+        <ion-card-content>
+             <ion-input [(ngModel)]="regista" placeholder="Es. Giancarlo Esposito" (input)="onInputNomeRegista($event)"></ion-input>
+             <ul class="suggerimenti-lista" *ngIf="suggerimentiRegisti.length > 0">
+               <li *ngFor="let regista of suggerimentiRegisti" (click)="selezionaSuggerimentoRegisti(regista)">
+                 <img [src]="getImage(regista.profile_path)" alt="{{ regista.name }}"/>
+                 <span>{{ regista.name }}</span>
+               </li>
+              </ul>
+          </ion-card-content>
+          </ion-card>
+
+          <p class="errore" *ngIf="erroreRegista">*Inserire un regista esistente</p>
+          </div>
+  <div class="CampiInput">
+  <label class="NomiInput">Valutazione media (0 a 10)</label>
+ <ion-card class="title-card">
+        <ion-card-content>
+             <ion-input style="text-align: center; width: 100%;"   min="0" max="10" step="0.1" inputmode="decimal" [(ngModel)]="vote_average" type="number" placeholder ="(es. 7.2)"></ion-input>
+          </ion-card-content> 
+          </ion-card>       
+          <p class="errore" *ngIf="erroreValutazione">*Inserire una valutazione media valida tra 0 e 10 </p>
+</div>
+           
+
+ <div class="CampiInput">
+  <label class="NomiInput">Numero voti</label>
+ <ion-card class="title-card">
+        <ion-card-content>
+             <ion-input style="text-align: center; width: 100%;"   min="0"  step="1" inputmode="decimal" [(ngModel)]="vote_count" type="number" placeholder ="(es. 150)"></ion-input>
+          </ion-card-content> 
+          </ion-card>        
+           <p class="errore" *ngIf="erroreNumeroVoti">*Inserire un numero di voti valido </p>   
+</div>
+
+<div class="CampiInput">
+  <label class="NomiInput">Data di uscita</label>
+           <ion-card class="title-card">
+        <ion-card-content>
+             <ion-input [(ngModel)]="release_date" type="text" placeholder="aaaa-mm-gg"></ion-input>
+          </ion-card-content>
+          </ion-card>
+            <p class="errore" *ngIf="erroreDataUscita">*Inserire una data d'uscita valida es. 26/04/2022 </p> 
+      </div>   
+     
+</div>
+
+
+<div class="CampiInput">
+  <label class="NomiInput">Generi film</label>
+   <ion-card class="title-card">
+     <ion-card-content>
+  <ion-select
+    [(ngModel)]="generiSelezionati"
+    multiple="true"
+    placeholder="Scegli i generi">
+    <ion-select-option
+      *ngFor="let g of generi"
+      [value]="g.id">
+      {{ g.nome }}
+    </ion-select-option>
+  </ion-select>
+</ion-card-content>
+</ion-card>
+</div>
+</div>  
+
+<ion-card class="cover-bottoni">
+  <ion-button class="AnnullaButton" fill="clear "expand="block"(click)="apriConfermaAnnulla()">Annulla</ion-button>
+
+<ion-button class="AggiungiButton" fill="clear "expand="block" (click)="apriConferma()">Modifica Film</ion-button>
+  </ion-card>
+
+</ion-card>
+ 
+
+  </div>
+
+<div class="input-riga2">
+<h2 style="color: white; margin: 5px;">Attori:</h2>
+<ion-button  *ngIf="!mostraFormAggiungiAttore" fill="clear" (click)="FormAggiungiAttore()" style="margin: 50px;"><img src="assets/icon/circle-plus.svg" width="35" height="35" /></ion-button>
+</div>
+
+<div  *ngIf="listaAttori" class="scroll-section">
+   <button class="scroll-button left" (click)="scrollLeft('attori')">◀</button>
+  <div #scrollContainer class="cast-scroll" id="attori">
+    <div *ngFor="let attore of listaAttori; let i = index" class="cast-item">
+      
+        <ion-card *ngIf="attore" class="actor-card">
+          <img  [src]="getPreviewImage(attore)" class="actor-image">
+          <ion-card-content class="actor-name">
+            {{ attore?.name }}
+          </ion-card-content>
+          <ion-card-content class="character-name">
+            {{ attore?.character_name }}
+          </ion-card-content>
+           <div class="sezione-edit-remove">
+  <ion-button   fill="clear" (click)="FormModificaAttore(attore,i)" style="margin: 0px;"><img src="assets/icon/pencil.svg" width="20" height="20" /></ion-button>
+  <ion-button   fill="clear" (click)="RimuoviAttore(i)" style="margin: 0px;"><img src="assets/icon/circle-x.svg" width="20" height="20" /></ion-button>
+  </div>
+        
+
+
+        </ion-card>
+      
+    </div>
+     <button class="scroll-button right" (click)="scrollRight('attori')">▶</button>
+  </div>
+  </div>
+
+
+
+
+
+<!-- Form per aggiungere un attore, si visualizza solo quando la variabile mostraFormAggiungiAttore è true, ovvero quando clicchiamo il tasto + per aggiungere un attore -->
+
+<div *ngIf="mostraFormAggiungiAttore" class="film-layout">
+    <!-- Copertina -->
+    <div class="attore-immagine ">   
+
+      <img [src]="getPreviewImage()" class="cover-image">
+          <input type="file" accept="image/*" (change)="onImageSelected($event,'attore')" hidden #fileInput>
+          <ion-button *ngIf="!campoBloccato"  fill="clear "expand="block" (click)="fileInput.click()">Carica foto</ion-button>
+    </div>
+    <ion-card class="cover-wrapper2">
+       <div class="CampiInput">
+  <label class="NomiInput">Nome e cognome</label>
+     <ion-card class="title-card">
+        <ion-card-content>
+             <ion-input [readonly]="campoBloccato"  [(ngModel)]="attoreCorrente.name" placeholder="Es. Giancarlo Esposito" (input)="onInputNomeAttore($event)"></ion-input>
+             <ul class="suggerimenti-lista" *ngIf="suggerimentiAttori.length > 0">
+               <li *ngFor="let attore of suggerimentiAttori" (click)="selezionaSuggerimento(attore)">
+                <img [src]="getImage(attore.profile_path)" alt="{{ attore.name }}"/>
+                 <span>{{ attore.name }}</span>
+               </li>
+              </ul>
+          </ion-card-content>
+          </ion-card>
+          <p class="errore" *ngIf="erroreNome">*Inserire un nome ed un cognome es. Giancarlo Esposito</p>
+          </div>
+    <!-- Descrizione -->
+      <div class="CampiInput">
+  <label class="NomiInput">Luogo Nascita</label>
+        <ion-card class="title-card">
+        <ion-card-content>
+             <ion-input [readonly]="campoBloccato"  [(ngModel)]="attoreCorrente.place_of_birth" placeholder="es. Napoli,Italia"></ion-input>
+          </ion-card-content>
+          </ion-card>
+          <p class="errore" *ngIf="erroreLuogoNascita">*Inserire un luogo di nascita es. Napoli,Italia</p>
+           </div>
+           
+  
+
+          <div class="CampiInput">
+  <label class="NomiInput">Data di nascita</label>
+  <ion-card class="title-card">
+    <ion-card-content>
+      <ion-input [readonly]="campoBloccato"  [(ngModel)]="attoreCorrente.birthday" placeholder="aaaa-mm-gg"></ion-input>
+    </ion-card-content>
+  </ion-card>
+   <p class="errore" *ngIf="erroreDataNascita">*Inserire una data di nascita es. 26/04/1958</p>
+</div>
+ <div class="CampiInput">
+  <label class="NomiInput">Data di morte(facoltativa)</label>
+             <ion-card class="title-card">
+        <ion-card-content>
+             <ion-input [readonly]="campoBloccato"  [(ngModel)]="attoreCorrente.deathday" placeholder="aaaa-mm-gg"></ion-input>
+          </ion-card-content>
+          </ion-card>
+           <p class="errore" *ngIf="erroreDataMorte">*Inserire una data di morte valida es. 26/04/1958</p>
+</div>
+    
+    </ion-card>
+
+    <ion-card class="cover-wrapper2">
+       <div class="CampiInput">
+  <label class="NomiInput">Biografia</label>
+<ion-card class="description-card2">
+      <ion-card-content>
+       <ion-textarea [readonly]="campoBloccato"  [(ngModel)]="attoreCorrente.biography" placeholder="Biografia" autoGrow="true"></ion-textarea>
+      </ion-card-content>
+ </ion-card>
+  <p class="errore" *ngIf="erroreBiografia">*Inserire una biografia </p>
+  </div>
+   <div class="CampiInput">
+  <label class="NomiInput">Genere</label>
+ <ion-card class="title-card">
+        <ion-card-content>
+            <ion-select [disabled]="campoBloccato"  name="gender"
+                [(ngModel)]="attoreCorrente.gender"
+                placeholder="Genere"
+                 (ionChange)="resetErroreGenere()">
+      <ion-select-option [value]="0">Non specificato</ion-select-option>
+      <ion-select-option [value]="1">Femmina</ion-select-option>
+      <ion-select-option [value]="2">Maschio</ion-select-option>
+      <ion-select-option [value]="3">Non-binary</ion-select-option>
+    </ion-select>
+          </ion-card-content>
+          </ion-card>
+          <p class="errore" *ngIf="erroreGenere">*Selezionare un genere </p>
+          </div>
+ <div class="CampiInput">
+  <label class="NomiInput">Ruolo/i</label>
+           <ion-card class="title-card">
+        <ion-card-content>
+             <ion-input [(ngModel)]="attoreCorrente.character_name" placeholder="ruolo1-ruolo2-..."></ion-input>
+          </ion-card-content>
+          </ion-card>
+          <p class="errore" *ngIf="erroreRuolo">*Inserire un ruolo es. Gustavo Fring </p>
+</div>
+
+
+    </ion-card>
+    <!-- Input sotto la descrizione -->
+<div class="input-riga">
+  <ion-card class="cover-wrapper2">
+<ion-button *ngIf="!modificaAttiva" class="AggiungiButton" fill="clear "expand="block" (click)="aggiungiAttore()">Aggiungi attore</ion-button>
+<ion-button *ngIf="modificaAttiva" class="AggiungiButton" fill="clear "expand="block" (click)="aggiungiAttore()">Applica modifiche</ion-button>
+<ion-button class="AnnullaButton" fill="clear "expand="block" (click)="annullaAttore()">Annulla</ion-button>
+  </ion-card>
+  
+</div>
+
+</div>
+
+  
+</ion-content>
