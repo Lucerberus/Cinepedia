@@ -34,7 +34,7 @@ La piattaforma supporta tre ruoli:
 
 ###  Service utilizzati
 - **AuthService**: si occupa dell'autenticazione dell'utente nel sito e delle operazioni di modifica dati dell'utente, del reset della password  e della registrazione
-- **ConfirmDialogComponent**: popup di diversi tipi che avvisano l'utente durante alcune operazioni
+- **DialogService**: popup di diversi tipi che avvisano l'utente durante alcune operazioni
 - **GetImageService**: si occupa di ritornare correttamente le immagini di attori,registi e film, foto profilo utente prese da TMDB oppure dal nostro backend
 - **FilmService**: si occupa di fare richieste get e post verso il backend riguardo film, attori e registi
 - **ServerStatutService**:si occupa di verificare lo stato del server, ogni 10 secondi fa un ping al backend, se non gli ritorna una risposta porta l'utente alla pagina 'server-offline' dove viene avvisato di tale evento
