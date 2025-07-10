@@ -55,7 +55,3 @@ La piattaforma supporta due ruoli:
 | Upload Immagini | Multer (con salvataggio locale) |
 | Sicurezza    | JSON Web Token (JWT)     |
 
----
-
-## 🗂️ Struttura del progetto (semplificata)
-
