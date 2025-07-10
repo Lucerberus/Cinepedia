@@ -1,10 +1,11 @@
 # Cinepedia
 
-**Cinepedia** è un’app web/mobile per la gestione e la consultazione del patrimonio cinematografico, sviluppata con **Ionic + Angular** per il frontend e **Node.js + Express** con **SQLite** per il backend.
+**Cinepedia** è un’app web/mobile il cui scopo è la consultazione di un catalogo di film e informazioni relative agli attori che vi recitano.Offre diverse funzionalità per gli utenti e per gli amministratori
 
-La piattaforma supporta due ruoli:
--  Utente
--  Admin
+La piattaforma supporta tre ruoli:
+-  guest (utente non autenticato)
+-  user
+-  admin
 
 ---
 
@@ -21,28 +22,21 @@ La piattaforma supporta due ruoli:
 
 ---
 
-###  Film
-- Aggiunta,modifica e rimozione dal DB (admin)
-- aggiunta tra i preferiti, valutazione (solo utenti autenticati)
-- Visualizzazione elenco film in griglia responsive
-- Filtro per genere tramite menu a tendina
-
----
-
-###  Attori
-- Aggiunta attori con foto profilo
-- Modifica dati attore e immagine
-- Associazione e rimozione film collegati
-- Prevenzione sovrascrittura immagini attori
-- Ricerca attori per modifica facilitata
-
+### Film e Attori
+  - visualizzare dettagli di tutti i film e di tutti gli attori che vi recitano
+  - fare ricerche mirate di un titolo di un film o di una persona (attore o regista)
+  - modificare,aggiungere e rimuovere film e attori (solo admin)
+  - aggiungere film tra i preferiti (solo utente autenticato)
+  - valutare un film (solo utente autenticato)
+  - visualizzare il trailer youtube (se disponibile) del film, vendendo reindirizzati in una pagina youtube
+    
 ---
 
 ###  Service utilizzati
-- **AuthService**: si occupa dell'autenticazione dell'utente nel sito
-- **ConfirmDialogComponent**: popup di diversi che avvisano l'utente durante alcune operazioni
+- **AuthService**: si occupa dell'autenticazione dell'utente nel sito e delle operazioni di modifica dati dell'utente, del reset della password  e della registrazione
+- **ConfirmDialogComponent**: popup di diversi tipi che avvisano l'utente durante alcune operazioni
 - **GetImageService**: si occupa di ritornare correttamente le immagini di attori,registi e film, foto profilo utente prese da TMDB oppure dal nostro backend
-- **FilmService**: si occupa di fare richieste get e post verso il backend riguardo film attori e registi
+- **FilmService**: si occupa di fare richieste get e post verso il backend riguardo film, attori e registi
 - **ServerStatutService**:si occupa di verificare lo stato del server, ogni 10 secondi fa un ping al backend, se non gli ritorna una risposta porta l'utente alla pagina 'server-offline' dove viene avvisato di tale evento
 
 ---
