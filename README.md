@@ -1,6 +1,6 @@
 # 🎬 Cinepedia
 
-**Cinepedia** è un’app mobile per la gestione e la consultazione del patrimonio cinematografico, sviluppata con **Ionic + Angular** per il frontend e **Node.js + Express** con **SQLite** per il backend.
+**Cinepedia** è un’app web/mobile per la gestione e la consultazione del patrimonio cinematografico, sviluppata con **Ionic + Angular** per il frontend e **Node.js + Express** con **SQLite** per il backend.
 
 La piattaforma supporta due ruoli:
 - 👤 Utente
