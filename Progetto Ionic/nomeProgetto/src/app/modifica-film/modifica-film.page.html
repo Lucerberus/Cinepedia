@@ -124,7 +124,7 @@
              <ion-input [(ngModel)]="release_date" type="text" placeholder="aaaa-mm-gg"></ion-input>
           </ion-card-content>
           </ion-card>
-            <p class="errore" *ngIf="erroreDataUscita">*Inserire una data d'uscita valida es. 26/04/2022 </p> 
+            <p class="errore" *ngIf="erroreDataUscita">*Inserire una data d'uscita valida es. 2022-12-01 </p> 
       </div>   
      
 </div>
@@ -242,7 +242,7 @@
       <ion-input [readonly]="campoBloccato"  [(ngModel)]="attoreCorrente.birthday" placeholder="aaaa-mm-gg"></ion-input>
     </ion-card-content>
   </ion-card>
-   <p class="errore" *ngIf="erroreDataNascita">*Inserire una data di nascita es. 26/04/1958</p>
+   <p class="errore" *ngIf="erroreDataNascita">*Inserire una data di nascita es. 1958-12-01</p>
 </div>
  <div class="CampiInput">
   <label class="NomiInput">Data di morte(facoltativa)</label>
@@ -251,7 +251,7 @@
              <ion-input [readonly]="campoBloccato"  [(ngModel)]="attoreCorrente.deathday" placeholder="aaaa-mm-gg"></ion-input>
           </ion-card-content>
           </ion-card>
-           <p class="errore" *ngIf="erroreDataMorte">*Inserire una data di morte valida es. 26/04/1958</p>
+           <p class="errore" *ngIf="erroreDataMorte">*Inserire una data di morte valida es. 1958-12-01</p>
 </div>
     
     </ion-card>
