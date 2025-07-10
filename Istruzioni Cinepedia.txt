@@ -1,7 +1,7 @@
 Istruzioni:
-*Per accedere con l'account admin inserire le credenziali dell'account admin riportate sotto
+*Per accedere con l'account admin inserire le credenziali dell'account admin riportate infondo al file
 
-*Per accedere con l'account user inserire le credenziali dell'account user riportate sotto
+*Per accedere con l'account user inserire le credenziali dell'account user riportate infondo al file
 
 *Nel file environment.ts ,nella cartella environments, è impostato in local host sulla porta 3000, ma modificare
  nel caso in cui il server backend risulti avviato in una porta diversa
@@ -11,10 +11,7 @@ Istruzioni:
 
 *Nella riga 24 nella variabile 'IPsito' specifico l'ip del sito ionic ed il numero di porta, questa variabile serve
  per permettere al server di generare il link da inviare via email per il reset-password e la conferma registrazione account.
-Modificare quindi di conseguenza nel caso in cui il sito venga avviato da ionic con un numero di porta diverso da 8100
-
-
-
+Modificare quindi di conseguenza nel caso in cui il sito venga avviato da ionic con un numero di porta diverso da 8100, altrimenti la funzione di invio email non potrà essere testata.
 
 
 -account admin:
